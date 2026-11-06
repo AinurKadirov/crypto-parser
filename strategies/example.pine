@@ -1,0 +1,5 @@
+//@version=5
+strategy("Example EMA")
+fastLength = input.int(21, "Fast MA Length", minval=1)
+slowLength = input.int(50, "Slow MA Length", minval=1)
+useFilter = input.bool(true, "Use trend filter")

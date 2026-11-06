@@ -1,0 +1,35 @@
+strategy:
+  name: ema_crossover
+  version: "1.0"
+  description: "EMA fast/slow crossover with volume filter"
+
+parameters:
+  ema_fast:
+    type: int
+    default: 12
+    range: [5, 50]
+    step: 1
+  ema_slow:
+    type: int
+    default: 26
+    range: [20, 200]
+    step: 2
+  volume_multiplier:
+    type: float
+    default: 1.5
+    range: [1.0, 3.0]
+    step: 0.1
+
+filters:
+  min_volume_24h: 1000000
+  exclude_weekends: false
+
+risk:
+  stop_loss_pct: 2.0
+  take_profit_pct: 4.0
+  max_position_pct: 10.0
+  commission_pct: 0.1
+  slippage_pct: 0.05
+
+backtest:
+  initial_balance: 10000

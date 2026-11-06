@@ -1,0 +1,33 @@
+# Binaries
+/bin/
+/dist/
+
+# Data & results (local only)
+/data/
+/results/
+*.db
+*.db-journal
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Env
+.env
+.env.local
+
+# Docker volumes
+postgres_data/

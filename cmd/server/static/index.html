@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>crypto-parser</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>crypto-parser</h1>
+    <p class="subtitle">Backtest &amp; strategy optimizer</p>
+    <div id="health" class="badge">loading...</div>
+  </header>
+
+  <nav>
+    <button class="tab active" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="configs">Configs</button>
+    <button class="tab" data-tab="data">Data</button>
+    <button class="tab" data-tab="indicators">Indicators</button>
+    <button class="tab" data-tab="runs">Runs</button>
+    <button class="tab" data-tab="optimize">Optimize</button>
+    <button class="tab" data-tab="docs">Docs</button>
+  </nav>
+
+  <main>
+    <section id="tab-overview" class="panel active">
+      <h2>Overview</h2>
+      <div class="cards" id="overview-cards"></div>
+    </section>
+
+    <section id="tab-configs" class="panel">
+      <h2>YAML Configs</h2>
+      <div id="configs-list"></div>
+      <details class="json-block">
+        <summary>Sample run config (parsed)</summary>
+        <pre id="config-details"></pre>
+      </details>
+    </section>
+
+    <section id="tab-data" class="panel">
+      <h2>Stored Candles (Parquet)</h2>
+      <p class="hint">Fetch data: <code>make fetch-btc</code></p>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Exchange</th>
+            <th>Symbol</th>
+            <th>TF</th>
+            <th>Bars</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="tab-indicators" class="panel">
+      <h2>Indicators</h2>
+      <div class="indicator-controls">
+        <label>Symbol <input id="ind-symbol" value="BTCUSDT" /></label>
+        <label>Timeframe <select id="ind-tf"><option>1h</option><option>15m</option><option>4h</option><option>1d</option></select></label>
+        <button id="ind-load" class="btn">Calculate</button>
+      </div>
+      <div id="ind-latest" class="cards"></div>
+      <table id="ind-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Close</th>
+            <th>EMA12</th>
+            <th>EMA26</th>
+            <th>SMA20</th>
+            <th>RSI14</th>
+            <th>MACD</th>
+            <th>Signal</th>
+            <th>Vol SMA</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="tab-runs" class="panel">
+      <h2>Backtest Runs</h2>
+      <p class="hint">Run: <code>make backtest</code></p>
+      <table id="runs-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Strategy</th>
+            <th>Symbol</th>
+            <th>TF</th>
+            <th>Return %</th>
+            <th>Sharpe</th>
+            <th>MaxDD %</th>
+            <th>Trades</th>
+            <th>Final</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="tab-optimize" class="panel">
+      <h2>Optimization Leaderboard</h2>
+      <p class="hint">Run: <code>make optimize</code></p>
+      <table id="sweeps-table">
+        <thead>
+          <tr>
+            <th>Run</th>
+            <th>Rank</th>
+            <th>Strategy</th>
+            <th>Symbol</th>
+            <th>TF</th>
+            <th>Metric</th>
+            <th>Score</th>
+            <th>Return %</th>
+            <th>Sharpe</th>
+            <th>MaxDD %</th>
+            <th>Trades</th>
+            <th>Final</th>
+            <th>Params</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="tab-docs" class="panel">
+      <h2>Documentation</h2>
+      <ul class="doc-links">
+        <li><strong>docs/README.md</strong> — index</li>
+        <li><strong>docs/STACK.md</strong> — stack &amp; dependencies</li>
+        <li><strong>docs/ARCHITECTURE.md</strong> — layers &amp; patterns</li>
+        <li><strong>docs/YAML_SCHEMA.md</strong> — config schemas</li>
+        <li><strong>docs/SPRINTS.md</strong> — development plan</li>
+      </ul>
+      <h3>Current sprint</h3>
+      <p>Sprint 5: optimizer (grid search), top-N sweeps in SQLite and UI leaderboard. See <code>docs/SPRINTS.md</code>.</p>
+      <h3>Docker (PostgreSQL)</h3>
+      <pre>docker compose up -d</pre>
+    </section>
+  </main>
+
+  <footer>
+    <span>Go · Parquet · SQLite · <a href="https://github.com/AinurKadirov/crypto-parser" target="_blank">GitHub</a></span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

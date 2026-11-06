@@ -1,0 +1,21 @@
+app:
+  name: crypto-parser
+  log_level: info
+
+paths:
+  data_dir: ./data
+  results_dir: ./results
+  config_dir: ./configs
+
+database:
+  driver: sqlite
+  dsn: ./results/crypto-parser.db
+
+ui:
+  port: 8080
+  enabled: true
+
+fetch:
+  rate_limit_ms: 200
+  retry_count: 3
+  binance_base_url: https://api.binance.com

@@ -1,0 +1,20 @@
+run:
+  name: btc_1h_ema_v1
+  strategy: ema_crossover
+  symbol: BTCUSDT
+  exchange: binance
+  timeframe: 1h
+  date_from: "2023-01-01"
+  date_to: "2025-05-01"
+
+params:
+  ema_fast: 12
+  ema_slow: 26
+  volume_multiplier: 1.5
+
+optimize:
+  enabled: true
+  method: grid
+  metric: sharpe_ratio
+  top_n: 10
+  max_iterations: 1000
